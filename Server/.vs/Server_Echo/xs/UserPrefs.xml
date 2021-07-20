@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{CDDBF90A-5D1F-4FCD-A6B7-FA979EAEC1CF}|Default">
+  <MonoDevelop.Ide.ItemProperties.C3__Server PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Server__Echo PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="C3_Server/MainClass.cs">
+    <Files>
+      <File FileName="C3_Server/Program.cs" Line="129" Column="2" />
+      <File FileName="C3_Server/MsgHandler.cs" Line="39" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Server_Echo" expanded="True">
+            <Node name="C3_Server" expanded="True">
+              <Node name="MainClass.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

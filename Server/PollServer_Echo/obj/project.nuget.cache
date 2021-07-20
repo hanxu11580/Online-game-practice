@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ii8qcG6z9q1/NIn4MHOiZZlNa00ICUlJP1Se3wcmImLZFcb+8Mc1Y6skzw1HaQPPLfNyc4hTnK7e64WXlH9Iow==",
+  "dgSpecHash": "X/vfQ1AxERbFX2SgBrdTunNrO74CiHO7YO+SL/J8eOj7jcqUzm2CzymZ7je+lIktBR4Mu7EOv1tjXbYNDf/+5A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server\\PollServer_Echo\\PollServer_Echo.csproj",
+  "projectFilePath": "/Users/hanxu/Desktop/Unity-Online-game-practice/Server/PollServer_Echo/PollServer_Echo.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

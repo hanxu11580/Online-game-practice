@@ -14,6 +14,7 @@ public class Main : MonoBehaviour
         NetManager.AddListener("Enter", OnEnter);
         NetManager.AddListener("Move", OnMove);
         NetManager.AddListener("Leave", OnLeave);
+        NetManager.AddListener("List", OnList);
         NetManager.Connect("127.0.0.1", 8888);
 
         GameObject go = Instantiate(syncPrefab);
@@ -31,11 +32,19 @@ public class Main : MonoBehaviour
         sendStr += eularY;
         NetManager.Send(sendStr);
     }
+
+    private void OnList(string msg)
+    {
+        string[] splits = msg.Split('|');
+        int count = (splits.Length - 1) / 6;
+
+    }
+
     private void OnEnter(string msg)
     {
         string[] splits = msg.Split(',');
         string desc = splits[0];
-        if (myHuman.desc == desc) return; //×Ô¼º
+        if (myHuman.desc == desc) return; //ï¿½Ô¼ï¿½
         float x = float.Parse(splits[1]);
         float y = float.Parse(splits[2]);
         float z = float.Parse(splits[3]);
@@ -45,12 +54,12 @@ public class Main : MonoBehaviour
 
     private void OnMove(string msg)
     {
-        Debug.Log("ÒÆ¶¯" + msg);
+        Debug.Log("ï¿½Æ¶ï¿½" + msg);
     }
 
     private void OnLeave(string msg)
     {
-        Debug.Log("Àë¿ª");
+        Debug.Log("ï¿½ë¿ª");
     }
 
     void Update()
