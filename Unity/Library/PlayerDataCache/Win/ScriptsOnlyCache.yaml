@@ -1,7 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - EchoClient
+    - Main
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.Graphs.dll:
@@ -14,17 +14,8 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
-    UnityEngine.UI.dll:
-    - UnityEngine.EventSystems.EventSystem
-    - UnityEngine.EventSystems.StandaloneInputModule
-    - UnityEngine.UI.Button
-    - UnityEngine.UI.CanvasScaler
-    - UnityEngine.UI.GraphicRaycaster
-    - UnityEngine.UI.Image
-    - UnityEngine.UI.InputField
-    - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/C3_Scene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -33,9 +24,17 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
     - Class: 48
+      Script: {instanceID: 0}
+    - Class: 64
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
@@ -43,41 +42,17 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 4378}
-    - Class: 114
-      Script: {instanceID: 5090}
-    - Class: 114
-      Script: {instanceID: 5502}
-    - Class: 114
-      Script: {instanceID: 5680}
-    - Class: 114
-      Script: {instanceID: 5758}
-    - Class: 114
-      Script: {instanceID: 5900}
-    - Class: 114
-      Script: {instanceID: 5970}
-    - Class: 114
-      Script: {instanceID: 6216}
-    - Class: 114
-      Script: {instanceID: 6352}
+      Script: {instanceID: 16132}
     - Class: 115
       Script: {instanceID: 0}
-    - Class: 128
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    - Class: 850595691
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -512,7 +487,37 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextContainer
+  - hash:
+      serializedVersion: 2
+      Hash: 293dc8a1bbe06473032cd4a56a259ad5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EchoPollClient
+  - hash:
+      serializedVersion: 2
+      Hash: 7b83b741d60700ba1271d41c13b88fa0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BaseHuman
+  - hash:
+      serializedVersion: 2
+      Hash: 7b83b741d60700ba1271d41c13b88fa0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CtrlHuman
+  - hash:
+      serializedVersion: 2
+      Hash: 7b83b741d60700ba1271d41c13b88fa0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SyncHuman
+  - hash:
+      serializedVersion: 2
+      Hash: 54ed7027ebf650c81ee9e6891e198e65
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Main
   platform: 5
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
-  playerPath: "C:/Users/puffer_1031/Desktop/Some/Unity-Online-game-practice/EchoExeFile/\u7F51\u7EDC\u6E38\u620F\u5B9E\u6218\u5B66\u4E60\u8BB0\u5F55\u9879\u76EE.exe"
+  - Assets/Scenes/C3_Scene.unity
+  playerPath: "C:/Users/puffer_1031/Desktop/Some/Unity-Online-game-practice/ExeFile/\u7F51\u7EDC\u6E38\u620F\u5B9E\u6218\u5B66\u4E60\u8BB0\u5F55\u9879\u76EE.exe"
