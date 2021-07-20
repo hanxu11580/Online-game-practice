@@ -61,7 +61,7 @@ public class EchoClient : MonoBehaviour
         {
             Socket sk = (Socket)ar.AsyncState;
             int count = sk.EndReceive(ar);
-            recvStr = Encoding.Default.GetString(recvBuff, 0, count);
+            recvStr +="\n" + Encoding.Default.GetString(recvBuff, 0, count);
             Debug.Log("当前线程"+System.Threading.Thread.CurrentThread.ManagedThreadId);
             //Txt_Recv.text = recvStr;
             sk.BeginReceive(recvBuff, 0, 1024, 0, RecvCallback, sk);

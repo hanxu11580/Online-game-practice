@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\puffer_1031\\Desktop\\Some\\Server_Echo\\Server_Echo\\Server_Echo.csproj": {}
+    "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server_Echo\\Server_Echo\\Server_Echo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\puffer_1031\\Desktop\\Some\\Server_Echo\\Server_Echo\\Server_Echo.csproj": {
+    "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server_Echo\\Server_Echo\\Server_Echo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\puffer_1031\\Desktop\\Some\\Server_Echo\\Server_Echo\\Server_Echo.csproj",
+        "projectUniqueName": "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server_Echo\\Server_Echo\\Server_Echo.csproj",
         "projectName": "Server_Echo",
-        "projectPath": "C:\\Users\\puffer_1031\\Desktop\\Some\\Server_Echo\\Server_Echo\\Server_Echo.csproj",
+        "projectPath": "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server_Echo\\Server_Echo\\Server_Echo.csproj",
         "packagesPath": "C:\\Users\\puffer_1031\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\puffer_1031\\Desktop\\Some\\Server_Echo\\Server_Echo\\obj\\",
+        "outputPath": "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server_Echo\\Server_Echo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\puffer_1031\\AppData\\Roaming\\NuGet\\NuGet.Config",

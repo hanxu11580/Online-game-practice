@@ -1,0 +1,13 @@
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\bin\Debug\netcoreapp3.1\PollServer_Echo.exe
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\bin\Debug\netcoreapp3.1\PollServer_Echo.deps.json
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\bin\Debug\netcoreapp3.1\PollServer_Echo.runtimeconfig.json
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\bin\Debug\netcoreapp3.1\PollServer_Echo.runtimeconfig.dev.json
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\bin\Debug\netcoreapp3.1\PollServer_Echo.dll
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\bin\Debug\netcoreapp3.1\PollServer_Echo.pdb
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\obj\Debug\netcoreapp3.1\PollServer_Echo.csprojAssemblyReference.cache
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\obj\Debug\netcoreapp3.1\PollServer_Echo.AssemblyInfoInputs.cache
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\obj\Debug\netcoreapp3.1\PollServer_Echo.AssemblyInfo.cs
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\obj\Debug\netcoreapp3.1\PollServer_Echo.csproj.CoreCompileInputs.cache
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\obj\Debug\netcoreapp3.1\PollServer_Echo.dll
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\obj\Debug\netcoreapp3.1\PollServer_Echo.pdb
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server_Echo\PollServer_Echo\obj\Debug\netcoreapp3.1\PollServer_Echo.genruntimeconfig.cache

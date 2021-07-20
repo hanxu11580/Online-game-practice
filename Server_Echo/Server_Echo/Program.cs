@@ -69,15 +69,15 @@ namespace Server_Echo
                     Console.WriteLine($"客户端Socket关闭");
                     return;
                 }
-
                 string recvStr = Encoding.Default.GetString(clS.recvBuff, 0, count);
-                Console.WriteLine($"接收Message：{recvStr}");
-
-                string sendStr = $"服务器收到Message{recvStr}";
+                //Console.WriteLine($"接收Message：{recvStr}");
+                int client_port = (client.RemoteEndPoint as IPEndPoint).Port;
+                string sendStr = $"端口-{client_port}：{recvStr}";
                 byte[] sendBuff = Encoding.Default.GetBytes(sendStr);
-                client.Send(sendBuff);
-                Console.WriteLine($"服务器发送" + sendStr);
-
+                foreach (ClientState cls in clientStateDict.Values)
+                {
+                    cls.Client.Send(sendBuff);
+                }
                 clS.Client.BeginReceive(clS.recvBuff, 0, 1024, 0, RecvCallback, clS);
 
 
