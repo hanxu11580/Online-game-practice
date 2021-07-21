@@ -1,0 +1,12 @@
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\bin\Debug\netcoreapp3.1\C4_Server.exe
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\bin\Debug\netcoreapp3.1\C4_Server.deps.json
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\bin\Debug\netcoreapp3.1\C4_Server.runtimeconfig.json
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\bin\Debug\netcoreapp3.1\C4_Server.runtimeconfig.dev.json
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\bin\Debug\netcoreapp3.1\C4_Server.dll
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\bin\Debug\netcoreapp3.1\C4_Server.pdb
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\obj\Debug\netcoreapp3.1\C4_Server.AssemblyInfoInputs.cache
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\obj\Debug\netcoreapp3.1\C4_Server.AssemblyInfo.cs
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\obj\Debug\netcoreapp3.1\C4_Server.csproj.CoreCompileInputs.cache
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\obj\Debug\netcoreapp3.1\C4_Server.dll
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\obj\Debug\netcoreapp3.1\C4_Server.pdb
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C4_Server\obj\Debug\netcoreapp3.1\C4_Server.genruntimeconfig.cache

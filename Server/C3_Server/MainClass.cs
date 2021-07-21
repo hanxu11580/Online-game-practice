@@ -94,7 +94,7 @@ namespace C3_Server
             }
 
             string recvStr = Encoding.Default.GetString(cls.recvBuff, 0, count);
-            Console.WriteLine(recvStr);
+            Console.WriteLine((client.RemoteEndPoint as IPEndPoint).Port + "-" + recvStr);
             string[] splitStrs = recvStr.Split('|');
             string msgName = splitStrs[0];
             string msgBody = splitStrs[1];
@@ -102,11 +102,6 @@ namespace C3_Server
             MethodInfo mi = typeof(MsgHandler).GetMethod(fullName);
             object[] arg = { cls, msgBody };
             mi.Invoke(null, arg);
-            //byte[] sendBuff = Encoding.Default.GetBytes(sendStr);
-            //foreach (ClientState clS in clientStateDict.Values)
-            //{
-            //    clS.Client.Send(sendBuff);
-            //}
             return true;
         }
 

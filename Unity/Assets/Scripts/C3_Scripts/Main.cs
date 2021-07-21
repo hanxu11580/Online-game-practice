@@ -31,12 +31,29 @@ public class Main : MonoBehaviour
         sendStr += pos.z + ",";
         sendStr += eularY;
         NetManager.Send(sendStr);
+        Invoke("SendListMsg", 0.1f);
+    }
+
+    void SendListMsg()
+    {
+        NetManager.Send("List|");
     }
 
     private void OnList(string msg)
     {
-        string[] splits = msg.Split('|');
-        int count = (splits.Length - 1) / 6;
+        string[] splits = msg.Split(',');
+        int personInfoCount = (splits.Length - 1) / 6;
+        for (int i = 0,count = personInfoCount; i < count; i++)
+        {
+            string desc = splits[i * 6];
+            if (myHuman.desc == desc) continue;
+            float x = float.Parse(splits[i * 6 + 1]);
+            float y = float.Parse(splits[i * 6 + 2]);
+            float z = float.Parse(splits[i * 6 + 3]);
+            float eulY = float.Parse(splits[i * 6 + 4]);
+            int hp = int.Parse(splits[i * 6 + 5]);
+            CreateOtherPerson(desc, new Vector3(x, y, z), eulY);
+        }
 
     }
 
@@ -44,7 +61,7 @@ public class Main : MonoBehaviour
     {
         string[] splits = msg.Split(',');
         string desc = splits[0];
-        if (myHuman.desc == desc) return; //�Լ�
+        if (myHuman.desc == desc) return;
         float x = float.Parse(splits[1]);
         float y = float.Parse(splits[2]);
         float z = float.Parse(splits[3]);
@@ -54,12 +71,27 @@ public class Main : MonoBehaviour
 
     private void OnMove(string msg)
     {
-        Debug.Log("�ƶ�" + msg);
+        string[] split = msg.Split(',');
+        string desc = split[0];
+        float x = float.Parse(split[1]);
+        float y = float.Parse(split[2]);
+        float z = float.Parse(split[3]);
+        if(otherHumans.TryGetValue(desc, out BaseHuman otherHuman))
+        {
+            otherHuman.MoveTo(new Vector3(x, y, z));
+        }
     }
 
     private void OnLeave(string msg)
     {
-        Debug.Log("�뿪");
+        string[] split = msg.Split(',');
+        string desc = split[0];
+        if (otherHumans.TryGetValue(desc, out BaseHuman otherHuman))
+        {
+            Destroy(otherHuman.gameObject);
+            otherHumans.Remove(desc);
+        }
+
     }
 
     void Update()
@@ -74,6 +106,5 @@ public class Main : MonoBehaviour
         BaseHuman human = go.AddComponent<SyncHuman>();
         human.desc = desc;
         otherHumans.Add(desc, human);
-        Debug.Log("Create Succ");
     }
 }

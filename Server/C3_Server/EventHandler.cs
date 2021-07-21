@@ -8,7 +8,12 @@ namespace C3_Server
     {
         public static void OnDisconnect(ClientState cls)
         {
-
+            string desc = cls.Client.RemoteEndPoint.ToString();
+            string sendStr = "Leave|" + desc + ",";
+            foreach (ClientState clS in MainClass.clientStateDict.Values)
+            {
+                MainClass.Send(clS, sendStr);
+            }
         }
     }
 }

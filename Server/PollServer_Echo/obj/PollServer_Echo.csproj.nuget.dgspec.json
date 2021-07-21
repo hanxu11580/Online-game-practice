@@ -1,28 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/hanxu/Desktop/Unity-Online-game-practice/Server/PollServer_Echo/PollServer_Echo.csproj": {}
+    "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server\\PollServer_Echo\\PollServer_Echo.csproj": {}
   },
   "projects": {
-    "/Users/hanxu/Desktop/Unity-Online-game-practice/Server/PollServer_Echo/PollServer_Echo.csproj": {
+    "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server\\PollServer_Echo\\PollServer_Echo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/hanxu/Desktop/Unity-Online-game-practice/Server/PollServer_Echo/PollServer_Echo.csproj",
+        "projectUniqueName": "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server\\PollServer_Echo\\PollServer_Echo.csproj",
         "projectName": "PollServer_Echo",
-        "projectPath": "/Users/hanxu/Desktop/Unity-Online-game-practice/Server/PollServer_Echo/PollServer_Echo.csproj",
-        "packagesPath": "/Users/hanxu/.nuget/packages/",
-        "outputPath": "/Users/hanxu/Desktop/Unity-Online-game-practice/Server/PollServer_Echo/obj/",
+        "projectPath": "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server\\PollServer_Echo\\PollServer_Echo.csproj",
+        "packagesPath": "C:\\Users\\puffer_1031\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server\\PollServer_Echo\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/Users/hanxu/.config/NuGet/NuGet.Config"
+          "C:\\Users\\puffer_1031\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.301/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

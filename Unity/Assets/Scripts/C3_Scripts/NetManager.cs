@@ -71,7 +71,6 @@ public static class NetManager
         {
             string firstMsg = messageList[0];
             messageList.RemoveAt(0);
-
             string[] splitMsg = firstMsg.Split('|');
             string msgName = splitMsg[0];
             string otherMsg = splitMsg[1];
