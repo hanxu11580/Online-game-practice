@@ -87,6 +87,7 @@ namespace C4_Server
             }
 
             string recvStr = Encoding.Default.GetString(cls.recvBuff, 2, count-2);
+            Console.WriteLine("接收 " + recvStr);
             byte[] sendStrByte = new byte[count];
 
             Array.Copy(cls.recvBuff, 0, sendStrByte, 0, count);
