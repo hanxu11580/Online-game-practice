@@ -1,29 +1,119 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Sockets;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Net.Sockets;
-using System.Net;
-using System.Text;
-using System;
-using System.Linq;
 
 public class ByteArray
 {
+    const int Default_Size = 1024;
+
+    int initSize = 0;
+
     public byte[] bytes;
+
     public int readIdx;
     public int writeIdx;
 
+    private int capacity = 0;
+
+    public int Remain => capacity - writeIdx;
+
     public int Length => writeIdx - readIdx;
 
-    public ByteArray(byte[] bytes)
+    public ByteArray(int size = Default_Size)
     {
-        this.bytes = bytes;
+        bytes = new byte[size];
+        capacity = size;
+        initSize = size;
         readIdx = 0;
-        writeIdx = bytes.Length;
+        writeIdx = 0;
     }
 
-    //µ÷ÊÔ
+    public ByteArray(byte[] defaultBytes)
+    {
+        bytes = defaultBytes;
+        capacity = defaultBytes.Length;
+        initSize = defaultBytes.Length;
+        readIdx = 0;
+        writeIdx = 0;
+    }
+
+    // é‡æ–°è®¾ç½®å¤§å°
+    public void ReSize(int size)
+    {
+        if (size < Length) return; //å°äºå½“å‰é•¿åº¦copyä¸è¿›å»
+        if (size < initSize) return;
+        int n = 1;
+        while (n < size) n *= 2; //æ¯æ¬¡é•¿åº¦ç¿»å€
+        capacity = n;
+        byte[] newBytes = new byte[capacity];
+        Array.Copy(bytes, readIdx, newBytes, 0, Length);
+        bytes = newBytes;
+        writeIdx = Length;
+        readIdx = 0;
+    }
+
+    // å‰ç§»åŠ¨æ•°ç»„,æé«˜å¯ç”¨é•¿åº¦
+    public void MoveBytes()
+    {
+        if(Length < 8)
+        {
+            if(Length > 0)
+            {
+                Array.Copy(bytes, readIdx, bytes, 0, Length);
+            }
+            writeIdx = Length; //é¡ºåºä¸èƒ½å˜
+            readIdx = 0;
+        }
+    }
+
+    public int Write(byte[] wirteBytes, int offset, int count)
+    {
+        if(Remain < count)
+        {
+            // æ‰©å®¹
+            ReSize(Length + count);
+        }
+        Array.Copy(wirteBytes, offset, bytes, writeIdx, count);
+        writeIdx += count;
+        return count;
+    }
+
+
+    public int Read(byte[] bs, int offset, int count)
+    {
+        // å½“å‰é•¿åº¦åªæœ‰3ä¸ªï¼Œç„¶åä»–è¦è¯»8ä¸ªï¼Œæ‰€ä»¥æˆ‘åªç»™ä»–3ä¸ª
+        count = Mathf.Min(count, Length);
+        Array.Copy(bytes, readIdx, bs, offset, count);
+        readIdx += count;
+        MoveBytes();
+        return count;
+    }
+
+    public short ReadInt16()
+    {
+        if (Length < 2) return 0;
+        // é»˜è®¤å°ç«¯
+        short ret = (short)((bytes[1] << 8) | bytes[0]);
+        readIdx += 2;
+        MoveBytes();
+        return ret;
+    }
+
+    public int ReadInt32()
+    {
+        if (Length < 4) return 0;
+        // é»˜è®¤å°ç«¯
+        int ret = (short)((bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0]);
+        readIdx += 4;
+        MoveBytes();
+        return ret;
+    }
+
+    //è°ƒè¯•
     public override string ToString()
     {
         return BitConverter.ToString(bytes, readIdx, Length);
@@ -51,7 +141,7 @@ public class Client_StickPackage : MonoBehaviour
 
     private string recvStr;
     private byte[] recvBuff = new byte[1024];
-    private int recvBuffCount; //½ÓÊÕ»º³åÇøÊı¾İ³¤¶È
+    private int recvBuffCount; //ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ³ï¿½ï¿½ï¿½
 
     private Queue<ByteArray> writeQue = new Queue<ByteArray>();
 
@@ -64,7 +154,7 @@ public class Client_StickPackage : MonoBehaviour
 
     public void Connect()
     {
-        Debug.Log("Ö÷Ïß³Ì" + System.Threading.Thread.CurrentThread.ManagedThreadId);
+        Debug.Log("ï¿½ï¿½ï¿½ß³ï¿½" + System.Threading.Thread.CurrentThread.ManagedThreadId);
 
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
@@ -80,7 +170,7 @@ public class Client_StickPackage : MonoBehaviour
             Socket sk = (Socket)ar.AsyncState;
             int count = sk.EndReceive(ar);
             recvBuffCount += count;
-            Debug.Log($"½ÓÊÕµ½:{count},´ËÊ±recvBuffÓĞ{recvBuffCount}");
+            Debug.Log($"ï¿½ï¿½ï¿½Õµï¿½:{count},ï¿½ï¿½Ê±recvBuffï¿½ï¿½{recvBuffCount}");
             OnReceiveByteData();
             System.Threading.Thread.Sleep(10000);
             sk.BeginReceive(recvBuff, 0, 1024 - recvBuffCount, 0, RecvCallback, sk);
@@ -94,32 +184,32 @@ public class Client_StickPackage : MonoBehaviour
     private void OnReceiveByteData()
     {
         if (recvBuffCount <= 2)
-        { // Ğ¡ÓÚÇ°×º×Ö½Ú³¤¶È
+        { // Ğ¡ï¿½ï¿½Ç°×ºï¿½Ö½Ú³ï¿½ï¿½ï¿½
             return;
         }
-        // È¡³ö
+        // È¡ï¿½ï¿½
         // Int16 bodyLength = BitConverter.ToInt16(recvBuff, 0);
         Int16 bodyLength = (short)((recvBuff[1] << 8) | (recvBuff[0]));
 
         if (recvBuffCount < bodyLength + 2)
-        { // ½ÓÊÕBuff×Ö½ÚÊı²»¹»Ò»¸öÏûÏ¢Ìå
+        { // ï¿½ï¿½ï¿½ï¿½Buffï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
             return;
         }
 
         string s = Encoding.Default.GetString(recvBuff, 2, bodyLength);
-        //¸üĞÂ»º³åÇø
+        //ï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½ï¿½ï¿½
         int copyStart = bodyLength + 2;
         recvBuffCount -= copyStart;
         Array.Copy(recvBuff, copyStart, recvBuff, 0, recvBuffCount);
         recvStr += "\n" + s;
-        Debug.Log($"½âÎö³öÀ´µÄ×Ö·û´®:{s}-Õâ¸öÏûÏ¢°üÌå´óĞ¡Îª{copyStart},´ËÊ±recvBuffÓĞ{recvBuffCount}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½:{s}-ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¡Îª{copyStart},ï¿½ï¿½Ê±recvBuffï¿½ï¿½{recvBuffCount}");
         OnReceiveByteData();
     }
 
 
     public void Send()
     {
-        //×é×°
+        //ï¿½ï¿½×°
         sendStr = sendMessage.text;
         sendBuff = Encoding.Default.GetBytes(sendStr);
         Int16 bodyLen = (Int16)sendBuff.Length;
@@ -129,7 +219,7 @@ public class Client_StickPackage : MonoBehaviour
             bodyLenByte.Reverse();
         }
         sendBuff = bodyLenByte.Concat(sendBuff).ToArray();
-        //·¢ËÍ
+        //ï¿½ï¿½ï¿½ï¿½
         ByteArray ba = new ByteArray(sendBuff);
         int countQue = 0;
         lock (writeQue)
@@ -157,7 +247,7 @@ public class Client_StickPackage : MonoBehaviour
 
         firstBa.readIdx += sendCount;
         if(firstBa.Length == 0)
-        { // baÖĞÃ»ÓĞÊ£Óà
+        { // baï¿½ï¿½Ã»ï¿½ï¿½Ê£ï¿½ï¿½
             lock (writeQue)
             {
                 writeQue.Dequeue();
@@ -166,7 +256,7 @@ public class Client_StickPackage : MonoBehaviour
         }
 
         if(firstBa != null)
-        { //¿ÉÄÜÊÇµÚ¶şÌõÒ²¿ÉÄÜÊÇµÚÒ»ÌõÊ£ÓàµÄ
+        { //ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÚ¶ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½Ò»ï¿½ï¿½Ê£ï¿½ï¿½ï¿½
             sk.BeginSend(firstBa.bytes, firstBa.readIdx, firstBa.Length, 0, SendCallback, sk);
         }
     }
