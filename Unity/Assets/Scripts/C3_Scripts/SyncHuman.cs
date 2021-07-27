@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SyncHuman : BaseHuman
+namespace C3
 {
-    private Camera cameraMain;
 
-    private new void Start()
+    public class SyncHuman : BaseHuman
     {
-        base.Start();
-        cameraMain = Camera.main;
-    }
+        private Camera cameraMain;
 
-    new void Update()
-    {
-        base.Update();
+        private new void Start()
+        {
+            base.Start();
+            cameraMain = Camera.main;
+        }
+
+        new void Update()
+        {
+            base.Update();
+        }
     }
 }
