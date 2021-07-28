@@ -59,16 +59,17 @@
     <Compile Include="Assets\Scripts\C3_Scripts\NetManager.cs" />
     <Compile Include="Assets\Scripts\C3_Scripts\BaseHuman.cs" />
     <Compile Include="Assets\Scripts\C3_Scripts\SyncHuman.cs" />
+    <Compile Include="Assets\Scripts\C6_Scripts\C6_Test.cs" />
     <Compile Include="Assets\Scripts\C3_Scripts\Main.cs" />
+    <Compile Include="Assets\Scripts\C6_Scripts\MsgBase.cs" />
+    <Compile Include="Assets\Scripts\C5_Scripts\SendData.cs" />
     <Compile Include="Assets\Scripts\C1、2_Scripts\EchoPollClient.cs" />
     <Compile Include="Assets\Scripts\C1、2_Scripts\EchoClient.cs" />
     <Compile Include="Assets\Scripts\C4_Scripts\Client_StickPackage.cs" />
     <Compile Include="Assets\Scripts\C3_Scripts\CtrlHuman.cs" />
+    <Compile Include="Assets\Scripts\C6_Scripts\NetManager.cs" />
     <Compile Include="Assets\Scripts\C4_Scripts\TestArrayByte.cs" />
-    <Compile Include="Assets\Scripts\C_5_Scripts\SendData.cs" />
-    <Compile Include="Assets\Scripts\C_6_Scripts\NetManager.cs" />
-    <Compile Include="Assets\Scripts\C_6_Scripts\C6_Test.cs" />
-    <Compile Include="Assets\Scripts\C_6_Scripts\MsgBase.cs" />
+    <Compile Include="Assets\Scripts\C6_Scripts\MsgPingPong.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
