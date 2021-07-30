@@ -93,7 +93,7 @@ namespace C7_Server
         {
             if (Length < 2) return 0;
             // 默认小端
-            short ret = (short)((bytes[1] << 8) | bytes[0]);
+            short ret = (short)((bytes[readIdx+1] << 8) | bytes[readIdx]);
             readIdx += 2;
             MoveBytes();
             return ret;
@@ -103,7 +103,7 @@ namespace C7_Server
         {
             if (Length < 4) return 0;
             // 默认小端
-            int ret = (short)((bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0]);
+            int ret = (short)((bytes[readIdx+3] << 24) | (bytes[readIdx+2] << 16) | (bytes[readIdx+1] << 8) | bytes[readIdx]);
             readIdx += 4;
             MoveBytes();
             return ret;

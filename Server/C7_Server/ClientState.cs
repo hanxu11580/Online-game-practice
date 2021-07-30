@@ -6,9 +6,17 @@ namespace C7_Server
 {
     class ClientState
     {
+   
         public Socket socket;
         public ByteArray readBuff = new ByteArray();
 
+
+        public static ClientState Create(Socket socket)
+        {
+            ClientState clientState = new ClientState();
+            clientState.socket = socket;
+            return clientState;
+        }
 
     }
 }
