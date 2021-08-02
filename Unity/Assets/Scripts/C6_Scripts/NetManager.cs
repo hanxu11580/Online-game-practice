@@ -7,6 +7,8 @@ using System.Linq;
 
 namespace C6
 {
+    #region ByteArray
+
     public class ByteArray
     {
         const int Default_Size = 1024;
@@ -126,6 +128,8 @@ namespace C6
             UnityEngine.Debug.Log(debugStr);
         }
     }
+
+    #endregion
 
     public enum NetEvent
     {

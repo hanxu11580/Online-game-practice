@@ -14,9 +14,13 @@ namespace C7_Server
 
         #region 协议名编码/解码
 
+        /// <summary>
+        /// 编码协议名，自动将长度信息添加
+        /// </summary>
+        /// <param name="msgBase"></param>
+        /// <returns></returns>
         public static byte[] EncodeProtoName(MsgBase msgBase)
         {
-            
             byte[] bytesName = Encoding.UTF8.GetBytes(msgBase.protoName);
             short nameLen = (short)bytesName.Length;
             byte[] bytes = new byte[bytesName.Length + 2];
@@ -83,5 +87,21 @@ namespace C7_Server
 
         public string desc = "127.0.0.1:6453";
 
+    }
+
+    public class MsgPing : MsgBase
+    {
+        public MsgPing()
+        {
+            protoName = "MsgPing";
+        }
+    }
+
+    public class MsgPong : MsgBase
+    {
+        public MsgPong()
+        {
+            protoName = "MsgPong";
+        }
     }
 }

@@ -6,10 +6,13 @@ namespace C7_Server
 {
     class ClientState
     {
-   
         public Socket socket;
+
         public ByteArray readBuff = new ByteArray();
 
+        public long lastPingTime = 0;
+
+        public Player player;
 
         public static ClientState Create(Socket socket)
         {

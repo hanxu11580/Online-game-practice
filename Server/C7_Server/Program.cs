@@ -11,7 +11,7 @@ namespace C7_Server
     {
         static void Main(string[] args)
         {
-            
+            NetManager.StartLoop(8888);
         }
     }
 }

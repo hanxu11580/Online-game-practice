@@ -22,3 +22,4 @@ C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\ob
 C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\obj\Debug\netcoreapp3.1\C7_Server.dll
 C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\obj\Debug\netcoreapp3.1\C7_Server.pdb
 C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\obj\Debug\netcoreapp3.1\C7_Server.genruntimeconfig.cache
+C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\obj\Debug\netcoreapp3.1\C7_Server.csprojAssemblyReference.cache

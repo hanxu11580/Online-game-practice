@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\C6_Scripts\Proto\GameMsg.cs" />
     <Compile Include="Assets\Scripts\C3_Scripts\NetManager.cs" />
     <Compile Include="Assets\Scripts\C3_Scripts\BaseHuman.cs" />
     <Compile Include="Assets\Scripts\C3_Scripts\SyncHuman.cs" />
@@ -65,14 +66,13 @@
     <Compile Include="Assets\Scripts\C6_Scripts\MsgPingPong.cs" />
     <Compile Include="Assets\Scripts\C5_Scripts\SendData.cs" />
     <Compile Include="Assets\Scripts\C1、2_Scripts\EchoPollClient.cs" />
+    <Compile Include="Assets\Scripts\C6_Scripts\Proto\SysMsg.cs" />
+    <Compile Include="Assets\Scripts\C6_Scripts\Proto\ProtoTest.cs" />
     <Compile Include="Assets\Scripts\C1、2_Scripts\EchoClient.cs" />
     <Compile Include="Assets\Scripts\C4_Scripts\Client_StickPackage.cs" />
     <Compile Include="Assets\Scripts\C3_Scripts\CtrlHuman.cs" />
     <Compile Include="Assets\Scripts\C6_Scripts\NetManager.cs" />
     <Compile Include="Assets\Scripts\C4_Scripts\TestArrayByte.cs" />
-    <Compile Include="Assets\Scripts\C6_Scripts\Proto\SysMsg.cs" />
-    <Compile Include="Assets\Scripts\C6_Scripts\Proto\GameMsg.cs" />
-    <Compile Include="Assets\Scripts\C6_Scripts\ProtoTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -297,14 +297,14 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.7f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="protobuf-net">
       <HintPath>Assets\Plugins\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>Assets\Plugins\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.7f1c1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

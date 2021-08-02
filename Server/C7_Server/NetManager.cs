@@ -16,6 +16,9 @@ namespace C7_Server
 
         static List<Socket> checkSockets = new List<Socket>();
 
+        public static long pingInterval = 30;
+
+        #region 启动
         public static void StartLoop(int listenPort)
         {
             listenfd = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -42,7 +45,15 @@ namespace C7_Server
                     }
                 }
 
+                Timer();
             }
+        }
+
+        static void Timer()
+        {
+            MethodInfo mi = typeof(EventHandler).GetMethod("OnTimer");
+            object[] args = { };
+            mi?.Invoke(null, args);
         }
 
         static void ResetCheckSocket()
@@ -64,11 +75,41 @@ namespace C7_Server
                 ClientState cState = ClientState.Create(client);
                 clientDict.Add(client, cState);
             }
-            catch(SocketException se)
+            catch (SocketException se)
             {
                 Console.WriteLine("Accept Failed:" + se.ToString());
             }
         }
+
+        #endregion
+
+        #region 发送
+
+        public static void Send(ClientState cs, MsgBase msgBase)
+        {
+            if (cs == null || !cs.socket.Connected) return;
+
+            byte[] protoNameBytes = MsgBase.EncodeProtoName(msgBase);
+            byte[] msgBytes = MsgBase.Encode(msgBase);
+            int len = protoNameBytes.Length + msgBytes.Length;
+            byte[] sendBytes = new byte[len + 2];
+            // 长度信息
+            sendBytes[0] = (byte)(len >> 0);
+            sendBytes[1] = (byte)(len >> 8);
+            Array.Copy(protoNameBytes, 0, sendBytes, 2, protoNameBytes.Length);
+            Array.Copy(msgBytes, 0, sendBytes, 2 + protoNameBytes.Length, msgBytes.Length);
+            try
+            {
+                cs.socket.BeginSend(sendBytes, 0, sendBytes.Length, 0, null, null);
+            }
+            catch (SocketException se)
+            {
+                Console.WriteLine("Socket Close on BeginSend" + se.ToString());
+            }
+        }
+
+        #endregion
+
         #region 接收数据
 
         static void ReadClinetfd(Socket clientfd)
@@ -76,12 +117,12 @@ namespace C7_Server
             ClientState cState = clientDict[clientfd];
             ByteArray readBuff = cState.readBuff;
             int receiveCount = 0;
-            if(readBuff.Remain <= 0)
+            if (readBuff.Remain <= 0)
             {
                 OnReceiveData(cState);
                 readBuff.MoveBytes();
             }
-            if(readBuff.Remain <= 0)
+            if (readBuff.Remain <= 0)
             {
                 Console.WriteLine("Receive Failed msgLength > BuffCapacity");
                 Close(cState);
@@ -92,14 +133,14 @@ namespace C7_Server
             {
                 receiveCount = clientfd.Receive(readBuff.bytes, readBuff.writeIdx, readBuff.Remain, 0);
             }
-            catch(SocketException se)
+            catch (SocketException se)
             {
                 Console.WriteLine("Receive Eexception " + se.ToString());
                 Close(cState);
                 return;
             }
 
-            if(receiveCount <= 0)
+            if (receiveCount <= 0)
             { // 客户端主动关闭
                 Console.WriteLine("Socket Closed" + cState.socket.RemoteEndPoint.ToString());
                 Close(cState);
@@ -117,7 +158,7 @@ namespace C7_Server
             byte[] bytes = readBuff.bytes;
             int readIdx = readBuff.readIdx;
             if (readBuff.Length <= 2) return;
-            short msgLen = (short)((bytes[readIdx + 1] << 8) | (bytes[readIdx]);
+            short msgLen = (short)((bytes[readIdx + 1] << 8) | (bytes[readIdx]));
             if (readBuff.Length < msgLen + 2) return;
             readBuff.readIdx += 2;
             string protoName = MsgBase.DecodeProtoName(readBuff.bytes, readBuff.readIdx, out int protoNameCount);
@@ -133,11 +174,11 @@ namespace C7_Server
             readBuff.readIdx += msgBodyCount;
             readBuff.MoveBytes();
             //
-            MethodInfo mi = typeof(C7_Server.MsgHandler).GetMethod($"On{protoName}");
+            MethodInfo mi = typeof(MsgHandler).GetMethod(protoName);
             object[] args = { state, msgBase };
             mi?.Invoke(null, args);
             Console.WriteLine("Receive Msg: " + protoName);
-            if(readBuff.Length > 2)
+            if (readBuff.Length > 2)
             {
                 OnReceiveData(state);
             }
@@ -156,6 +197,19 @@ namespace C7_Server
             state.socket.Close();
             clientDict.Remove(state.socket);
         }
+
+        #endregion
+
+        #region PingPong
+
+        // 获取时间戳
+        public static long GetTimeStamp()
+        {
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return Convert.ToInt64(ts.TotalSeconds);
+        }
+
+
 
         #endregion
     }
