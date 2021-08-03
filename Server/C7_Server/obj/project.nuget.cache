@@ -1,8 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "/j//4DdS3aH8U+VoypzfkblSmv2jA86BxUHOne7OIkxUNJTXzqEqUOJuxL+EsigThN06trX7+mwBdrcybKaoaQ==",
+  "dgSpecHash": "/jbcqC6w51T3JT6eQdGt8ey+eSyXg1nayHwAVcW8W6AzbdlfjcQmtV/9MwgwG+5jiNc6zCfRHDwbdx7uj2QOCg==",
   "success": true,
   "projectFilePath": "C:\\Users\\puffer_1031\\Desktop\\Some\\Unity-Online-game-practice\\Server\\C7_Server\\C7_Server.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\mongodb.bson\\2.13.0\\mongodb.bson.2.13.0.nupkg.sha512",
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\mongodb.driver\\2.13.0\\mongodb.driver.2.13.0.nupkg.sha512",
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\mongodb.driver.core\\2.13.0\\mongodb.driver.core.2.13.0.nupkg.sha512",
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\mongodb.libmongocrypt\\1.2.1\\mongodb.libmongocrypt.1.2.1.nupkg.sha512",
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\sharpcompress\\0.23.0\\sharpcompress.0.23.0.nupkg.sha512",
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\puffer_1031\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512"
+  ],
   "logs": []
 }

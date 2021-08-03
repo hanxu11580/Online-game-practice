@@ -4,7 +4,7 @@ using System.Text;
 using System.Net.Sockets;
 namespace C7_Server
 {
-    class ClientState
+    public class ClientState
     {
         public Socket socket;
 

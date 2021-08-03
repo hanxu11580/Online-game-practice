@@ -34,4 +34,13 @@ namespace C7_Server
 
         public string text = "new text";
     }
+
+    public class DB_Player
+    {
+        public string id;
+
+        public string pw;
+
+        public PlayerData data;
+    }
 }
