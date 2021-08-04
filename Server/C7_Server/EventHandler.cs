@@ -8,7 +8,13 @@ namespace C7_Server
     {
         public static void OnDisconnect(ClientState state)
         {
-            Console.WriteLine("Close");
+            Console.WriteLine($"{state.socket.RemoteEndPoint} Close");
+            if (state.player != null)
+            {
+                PlayerDataHelper.UpdatePlayerData(state.player.acc, state.player.playerData);
+                PlayerManager.RemovePlayer(state.player.acc);
+            }
+
         }
 
         public static void OnTimer()
@@ -21,6 +27,7 @@ namespace C7_Server
             long timeNow = NetManager.GetTimeStamp();
             foreach (ClientState cs in NetManager.clientDict.Values)
             {
+                if (cs.lastPingTime == 0) continue; //没有接收到第一个ping
                 if(timeNow - cs.lastPingTime >= NetManager.pingInterval * 4)
                 {
                     Console.WriteLine("Timeout Close " + cs.socket.RemoteEndPoint.ToString());

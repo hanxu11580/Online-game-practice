@@ -41,7 +41,7 @@ namespace C6
             capacity = defaultBytes.Length;
             initSize = defaultBytes.Length;
             readIdx = 0;
-            writeIdx = 0;
+            writeIdx = defaultBytes.Length;
         }
 
         // 重新设置大小
@@ -171,7 +171,7 @@ namespace C6
 
         public static bool IsUsePing = true;
 
-        public static int pingInterval = 5;
+        public static int pingInterval = 30;
 
         static float lastPingTime;
 
@@ -357,7 +357,6 @@ namespace C6
             if (socket == null || !socket.Connected) return;
             if (isConnecting) return;
             if (isClosing) return;
-
             byte[] protoNameBytes = MsgBase.EncodeProtoName(msg);
             byte[] msgBytes = MsgBase.Encode(msg);
             int len = protoNameBytes.Length + msgBytes.Length;
@@ -375,6 +374,7 @@ namespace C6
                 writeQue.Enqueue(ba);
                 writeQueCount = writeQue.Count;
             }
+
             if(writeQueCount == 1)
             {
                 socket.BeginSend(sendBytes, 0, sendBytes.Length, 0, SendCallback, socket);
@@ -467,7 +467,6 @@ namespace C6
             // 这里因为我加了命名空间，GetType必须要有命名空间.
             // 这里如果不加因为不在主线程，所以还不会报错
             MsgBase msgBase = MsgBase.Decode($"C6.{protoName}", readBuff.bytes, readBuff.readIdx, msgBodyLen);
-            Debug.Log(msgBase.protoName);
             readBuff.readIdx += msgBodyLen;
             readBuff.MoveBytes();
             lock (msgLists)
@@ -528,6 +527,7 @@ namespace C6
             // 判断是否有回应
             if(Time.time - lastPongTime > pingInterval * 4)
             {
+                Debug.Log($"关闭时间戳之差:{Time.time - lastPongTime}");
                 Close();
             }
         }

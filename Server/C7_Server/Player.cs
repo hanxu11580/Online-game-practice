@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,7 +8,7 @@ namespace C7_Server
 
     public class Player
     {
-        public string id = string.Empty;
+        public string acc = string.Empty;
 
         public ClientState clientState;
 
@@ -37,7 +38,9 @@ namespace C7_Server
 
     public class DB_Player
     {
-        public string id;
+        public ObjectId Id { get; set; }
+
+        public string acc;
 
         public string pw;
 

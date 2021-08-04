@@ -176,8 +176,8 @@ namespace C7_Server
             //
             MethodInfo mi = typeof(MsgHandler).GetMethod(protoName);
             object[] args = { state, msgBase };
-            mi?.Invoke(null, args);
             Console.WriteLine("Receive Msg: " + protoName);
+            mi?.Invoke(null, args);
             if (readBuff.Length > 2)
             {
                 OnReceiveData(state);

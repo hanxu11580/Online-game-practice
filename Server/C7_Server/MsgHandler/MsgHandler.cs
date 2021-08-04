@@ -4,11 +4,11 @@ using System.Text;
 
 namespace C7_Server
 {
-    class MsgHandler
+    public partial class MsgHandler
     {
         public static void MsgPing(ClientState cs, MsgBase msgBase)
         {
-            Console.WriteLine("MsgPing");
+            Console.WriteLine("处理MsgPing");
             cs.lastPingTime = NetManager.GetTimeStamp();
             MsgPong msgPong = new MsgPong();
             NetManager.Send(cs, msgPong);

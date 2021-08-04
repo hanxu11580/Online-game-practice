@@ -73,7 +73,9 @@
     <Compile Include="Assets\Scripts\C3_Scripts\CtrlHuman.cs" />
     <Compile Include="Assets\Scripts\C6_Scripts\NetManager.cs" />
     <Compile Include="Assets\Scripts\C4_Scripts\TestArrayByte.cs" />
-    <Compile Include="Assets\Scripts\ConnectMongoDB.cs" />
+    <Compile Include="Assets\Scripts\C7_Scripts\Proto\MsgRegister.cs" />
+    <Compile Include="Assets\Scripts\C7_Scripts\Proto\MsgGetText.cs" />
+    <Compile Include="Assets\Scripts\C7_Scripts\C7_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

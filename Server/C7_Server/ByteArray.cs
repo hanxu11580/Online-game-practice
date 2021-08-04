@@ -34,7 +34,7 @@ namespace C7_Server
             capacity = defaultBytes.Length;
             initSize = defaultBytes.Length;
             readIdx = 0;
-            writeIdx = 0;
+            writeIdx = defaultBytes.Length;
         }
 
         // 重新设置大小

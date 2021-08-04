@@ -24,4 +24,3 @@ C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\bi
 C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\bin\Debug\netcoreapp3.1\runtimes\linux\native\libmongocrypt.so
 C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\bin\Debug\netcoreapp3.1\runtimes\osx\native\libmongocrypt.dylib
 C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\bin\Debug\netcoreapp3.1\runtimes\win\native\mongocrypt.dll
-C:\Users\puffer_1031\Desktop\Some\Unity-Online-game-practice\Server\C7_Server\obj\Debug\netcoreapp3.1\C7_Server.csprojAssemblyReference.cache
