@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,13 +44,13 @@ namespace C6
             writeIdx = defaultBytes.Length;
         }
 
-        // ÖØĞÂÉèÖÃ´óĞ¡
+        // é‡æ–°è®¾ç½®å¤§å°
         public void ReSize(int size)
         {
-            if (size < Length) return; //Ğ¡ÓÚµ±Ç°³¤¶Ècopy²»½øÈ¥
+            if (size < Length) return; //å°äºå½“å‰é•¿åº¦copyä¸è¿›å»
             if (size < initSize) return;
             int n = 1;
-            while (n < size) n *= 2; //Ã¿´Î³¤¶È·­±¶
+            while (n < size) n *= 2; //æ¯æ¬¡é•¿åº¦ç¿»å€
             capacity = n;
             byte[] newBytes = new byte[capacity];
             Array.Copy(bytes, readIdx, newBytes, 0, Length);
@@ -59,7 +59,7 @@ namespace C6
             readIdx = 0;
         }
 
-        // Ç°ÒÆ¶¯Êı×é,Ìá¸ß¿ÉÓÃ³¤¶È
+        // å‰ç§»åŠ¨æ•°ç»„,æé«˜å¯ç”¨é•¿åº¦
         public void MoveBytes()
         {
             if (Length < 8)
@@ -68,7 +68,7 @@ namespace C6
                 {
                     Array.Copy(bytes, readIdx, bytes, 0, Length);
                 }
-                writeIdx = Length; //Ë³Ğò²»ÄÜ±ä
+                writeIdx = Length; //é¡ºåºä¸èƒ½å˜
                 readIdx = 0;
             }
         }
@@ -77,7 +77,7 @@ namespace C6
         {
             if (Remain < count)
             {
-                // À©Èİ
+                // æ‰©å®¹
                 ReSize(Length + count);
             }
             Array.Copy(wirteBytes, offset, bytes, writeIdx, count);
@@ -88,7 +88,7 @@ namespace C6
 
         public int Read(byte[] bs, int offset, int count)
         {
-            // µ±Ç°³¤¶ÈÖ»ÓĞ3¸ö£¬È»ºóËûÒª¶Á8¸ö£¬ËùÒÔÎÒÖ»¸øËû3¸ö
+            // å½“å‰é•¿åº¦åªæœ‰3ä¸ªï¼Œç„¶åä»–è¦è¯»8ä¸ªï¼Œæ‰€ä»¥æˆ‘åªç»™ä»–3ä¸ª
             count = Mathf.Min(count, Length);
             Array.Copy(bytes, readIdx, bs, offset, count);
             readIdx += count;
@@ -99,7 +99,7 @@ namespace C6
         public short ReadInt16()
         {
             if (Length < 2) return 0;
-            // Ä¬ÈÏĞ¡¶Ë
+            // é»˜è®¤å°ç«¯
             short ret = (short)((bytes[1] << 8) | bytes[0]);
             readIdx += 2;
             MoveBytes();
@@ -109,14 +109,14 @@ namespace C6
         public int ReadInt32()
         {
             if (Length < 4) return 0;
-            // Ä¬ÈÏĞ¡¶Ë
+            // é»˜è®¤å°ç«¯
             int ret = (short)((bytes[3] << 24) | (bytes[2] << 16) | (bytes[1] << 8) | bytes[0]);
             readIdx += 4;
             MoveBytes();
             return ret;
         }
 
-        //µ÷ÊÔ
+        //è°ƒè¯•
         public override string ToString()
         {
             return BitConverter.ToString(bytes, readIdx, Length);
@@ -148,18 +148,18 @@ namespace C6
         static Queue<ByteArray> writeQue;
 
         public delegate void EventListener(string err);
-        // ÍøÂçÊÂ¼ş
+        // ç½‘ç»œäº‹ä»¶
         static Dictionary<NetEvent, EventListener> eventListeners = new Dictionary<NetEvent, EventListener>();
 
         public delegate void MsgListener(MsgBase msg);
-        // ÏûÏ¢ÊÂ¼ş
+        // æ¶ˆæ¯äº‹ä»¶
         static Dictionary<string, MsgListener> msgListeners = new Dictionary<string, MsgListener>();
 
         static bool isConnecting = false;
 
         static bool isClosing = false;
 
-        // ½ÓÊÕ
+        // æ¥æ”¶
 
         static List<MsgBase> msgLists = new List<MsgBase>();
 
@@ -167,7 +167,7 @@ namespace C6
 
         readonly static int MAX_MESSAGE_THROW = 10;
 
-        // ĞÄÌøĞ­Òé
+        // å¿ƒè·³åè®®
 
         public static bool IsUsePing = true;
 
@@ -204,7 +204,7 @@ namespace C6
         }
 
 
-        #region ÍøÂçÊÂ¼ş¹¦ÄÜ
+        #region ç½‘ç»œäº‹ä»¶åŠŸèƒ½
         public static void AddEventListener(NetEvent netEvent, EventListener listener)
         {
             if (eventListeners.TryGetValue(netEvent, out EventListener el))
@@ -240,7 +240,7 @@ namespace C6
 
         #endregion
 
-        #region ÏûÏ¢ÊÂ¼ş
+        #region æ¶ˆæ¯äº‹ä»¶
 
         public static void AddMsgListener(string msgName, MsgListener ml)
         {
@@ -276,24 +276,24 @@ namespace C6
 
         #endregion
 
-        #region Á¬½Ó
+        #region è¿æ¥
 
         public static void Connect(string ip, int port)
         {
             if(socket != null && isConnecting)
             {
-                Debug.LogError("ÒÑÁ¬½Ó Already Connected");
+                Debug.LogError("å·²è¿æ¥ Already Connected");
                 return;
             }
 
             if (isConnecting)
             {
-                Debug.LogError("ÕıÔÚÁ¬½Ó IsConnecting");
+                Debug.LogError("æ­£åœ¨è¿æ¥ IsConnecting");
                 return;
             }
 
             InitState();
-            socket.NoDelay = true; // ²»»á»ıÔÜĞ¡ÏûÏ¢
+            socket.NoDelay = true; // ä¸ä¼šç§¯æ”’å°æ¶ˆæ¯
             isConnecting = true;
             socket.BeginConnect(ip, port, ConnectCallback, socket);
         }
@@ -304,17 +304,17 @@ namespace C6
             {
                 Socket sk = ar.AsyncState as Socket;
                 sk.EndConnect(ar);
-                Debug.Log("Á¬½Ó³É¹¦ Connect Succ");
+                Debug.Log("è¿æ¥æˆåŠŸ Connect Succ");
                 ThrowEvent(NetEvent.ConnectSucc, string.Empty);
                 isConnecting = false;
 
-                // ½ÓÊÕÊı¾İ
+                // æ¥æ”¶æ•°æ®
                 sk.BeginReceive(readBuff.bytes, readBuff.writeIdx, readBuff.Remain, 0, ReceiveCallback, sk);
             }
             catch(SocketException se)
             {
                 string errStr = se.ToString();
-                Debug.Log("Á¬½ÓÊ§°Ü Connect Failed" + errStr);
+                Debug.Log("è¿æ¥å¤±è´¥ Connect Failed" + errStr);
                 ThrowEvent(NetEvent.ConnectFail, errStr);
                 isConnecting = false;
             }
@@ -322,7 +322,7 @@ namespace C6
 
         #endregion
 
-        #region ¹Ø±Õ
+        #region å…³é—­
         public static void Close()
         {
             Debug.Log("Socket Closed");
@@ -351,7 +351,7 @@ namespace C6
 
         #endregion
 
-        #region ·¢ËÍ
+        #region å‘é€
         public static void Send(MsgBase msg)
         {
             if (socket == null || !socket.Connected) return;
@@ -360,12 +360,12 @@ namespace C6
             byte[] protoNameBytes = MsgBase.EncodeProtoName(msg);
             byte[] msgBytes = MsgBase.Encode(msg);
             int len = protoNameBytes.Length + msgBytes.Length;
-            byte[] sendBytes = new byte[len+2]; //·¢ËÍĞÅÏ¢»¹ÓĞÍ·²¿ĞÅÏ¢
+            byte[] sendBytes = new byte[len+2]; //å‘é€ä¿¡æ¯è¿˜æœ‰å¤´éƒ¨ä¿¡æ¯
             sendBytes[0] = (byte)(len >> 0);
             sendBytes[1] = (byte)(len >> 8);
-            // ×é×°Ğ­ÒéÃû³Æ
+            // ç»„è£…åè®®åç§°
             Array.Copy(protoNameBytes, 0, sendBytes, 2, protoNameBytes.Length);
-            // ×é×°Ğ­Òé
+            // ç»„è£…åè®®
             Array.Copy(msgBytes, 0, sendBytes, protoNameBytes.Length + 2, msgBytes.Length);
             ByteArray ba = new ByteArray(sendBytes);
             int writeQueCount = 0;
@@ -394,14 +394,14 @@ namespace C6
             }
             firstBa.readIdx += sendCount;
             if(firstBa.Length == 0)
-            { //µ±Ç°ÒÑ·¢Íê It has been send out
+            { //å½“å‰å·²å‘å®Œ It has been send out
                 lock (writeQue)
                 {
                     writeQue.Dequeue();
                     firstBa = writeQue.Dequeue();
                 }
             }
-            // ´ËÊ±¿ÉÄÜfirstBaÎ´·¢Íê£¬»òÕß¶ÓÁĞÏÂÒ»¸öĞèÒª·¢ËÍµÄ
+            // æ­¤æ—¶å¯èƒ½firstBaæœªå‘å®Œï¼Œæˆ–è€…é˜Ÿåˆ—ä¸‹ä¸€ä¸ªéœ€è¦å‘é€çš„
             if(firstBa != null)
             {
                 sk.BeginSend(firstBa.bytes, firstBa.readIdx, firstBa.Length, 0, SendCallback, sk);
@@ -413,7 +413,7 @@ namespace C6
 
         #endregion
 
-        #region ½ÓÊÕ
+        #region æ¥æ”¶
         static void ReceiveCallback(IAsyncResult ar)
         {
             try
@@ -421,7 +421,7 @@ namespace C6
                 Socket sk = ar.AsyncState as Socket;
                 int recvCount = sk.EndReceive(ar);
                 if (recvCount == 0)
-                {//½ÓÊÕµ½FIN
+                {//æ¥æ”¶åˆ°FIN
                     Close();
                     return;
                 }
@@ -429,7 +429,7 @@ namespace C6
                 readBuff.writeIdx += recvCount;
                 OnReceiveData();
                 if(readBuff.Remain < 8)
-                { // ÓÉÓÚ²»ÖªµÀÏÂ´ÎÊı¾İÁ¿¶àÉÙ,Ê£Óà²»×ãÖ±½ÓÀ©Èİ
+                { // ç”±äºä¸çŸ¥é“ä¸‹æ¬¡æ•°æ®é‡å¤šå°‘,å‰©ä½™ä¸è¶³ç›´æ¥æ‰©å®¹
                     readBuff.MoveBytes();
                     readBuff.ReSize(readBuff.Length * 2);
                 }
@@ -442,9 +442,9 @@ namespace C6
             }
         }
 
-        // 2¸ö¹¦ÄÜ
-        // 1.½ÓÊÕÍ·²¿ĞÅÏ¢ ÅĞ¶ÏÊÇ·ñ¿ÉÓÃ´¦ÀíÏûÏ¢
-        // 2.½âÎö²¢·Ö·¢ÏûÏ¢
+        // 2ä¸ªåŠŸèƒ½
+        // 1.æ¥æ”¶å¤´éƒ¨ä¿¡æ¯ åˆ¤æ–­æ˜¯å¦å¯ç”¨å¤„ç†æ¶ˆæ¯
+        // 2.è§£æå¹¶åˆ†å‘æ¶ˆæ¯
         static void OnReceiveData()
         {
             if (readBuff.Length <= 2) return;
@@ -452,20 +452,20 @@ namespace C6
             byte[] bytes = readBuff.bytes;
             short msgLen = (short)(bytes[readIdx] | (bytes[readIdx+1] << 8));
             if (readBuff.Length < msgLen + 2) return;
-            // ¹»Ò»ÌõÏûÏ¢ÁË
+            // å¤Ÿä¸€æ¡æ¶ˆæ¯äº†
             readBuff.readIdx += 2;
-            // ½âÎöĞ­ÒéÃû³Æ
+            // è§£æåè®®åç§°
             string protoName = MsgBase.DecodeProtoName(readBuff.bytes, readBuff.readIdx, out int protoNameLen);
             if (string.IsNullOrEmpty(protoName))
             {
                 Debug.Log("ProtoName Decode Failed protoName is Null");
                 return;
             }
-            readBuff.readIdx += protoNameLen; //ÕâÀïÒÑ¾­¼ÓÉÏÁËĞ­ÒéÃûµÄ2¸ö×Ö½Ú³¤¶ÈµÄĞÅÏ¢
-            // ½âÎöÏûÏ¢Ìå
+            readBuff.readIdx += protoNameLen; //è¿™é‡Œå·²ç»åŠ ä¸Šäº†åè®®åçš„2ä¸ªå­—èŠ‚é•¿åº¦çš„ä¿¡æ¯
+            // è§£ææ¶ˆæ¯ä½“
             int msgBodyLen = msgLen - protoNameLen;
-            // ÕâÀïÒòÎªÎÒ¼ÓÁËÃüÃû¿Õ¼ä£¬GetType±ØĞëÒªÓĞÃüÃû¿Õ¼ä.
-            // ÕâÀïÈç¹û²»¼ÓÒòÎª²»ÔÚÖ÷Ïß³Ì£¬ËùÒÔ»¹²»»á±¨´í
+            // è¿™é‡Œå› ä¸ºæˆ‘åŠ äº†å‘½åç©ºé—´ï¼ŒGetTypeå¿…é¡»è¦æœ‰å‘½åç©ºé—´.
+            // è¿™é‡Œå¦‚æœä¸åŠ å› ä¸ºä¸åœ¨ä¸»çº¿ç¨‹ï¼Œæ‰€ä»¥è¿˜ä¸ä¼šæŠ¥é”™
             MsgBase msgBase = MsgBase.Decode($"C6.{protoName}", readBuff.bytes, readBuff.readIdx, msgBodyLen);
             readBuff.readIdx += msgBodyLen;
             readBuff.MoveBytes();
@@ -509,14 +509,14 @@ namespace C6
             }
         }
 
-        // ÊÇ·ñÆôÓÃ
-        // ¸ù¾İlastPingTime ¼ä¸ô·¢ËÍping
-        // ¸ù¾İlastPongTime ÊÇ·ñ¹Ø±Õ
+        // æ˜¯å¦å¯ç”¨
+        // æ ¹æ®lastPingTime é—´éš”å‘é€ping
+        // æ ¹æ®lastPongTime æ˜¯å¦å…³é—­
         static void PingpongUpdate()
         {
             if (!IsUsePing) return;
             
-            // ¼ä¸ô·¢ËÍ
+            // é—´éš”å‘é€
             if (Time.time - lastPingTime >= pingInterval)
             {
                 MsgPing msgPing = new MsgPing();
@@ -524,10 +524,10 @@ namespace C6
                 lastPingTime = Time.time;
             }
 
-            // ÅĞ¶ÏÊÇ·ñÓĞ»ØÓ¦
+            // åˆ¤æ–­æ˜¯å¦æœ‰å›åº”
             if(Time.time - lastPongTime > pingInterval * 4)
             {
-                Debug.Log($"¹Ø±ÕÊ±¼ä´ÁÖ®²î:{Time.time - lastPongTime}");
+                Debug.Log($"å…³é—­æ—¶é—´æˆ³ä¹‹å·®:{Time.time - lastPongTime}");
                 Close();
             }
         }
